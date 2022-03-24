@@ -14,37 +14,17 @@ const seaList = listOfSeas.seaList.map(c => c.toLowerCase());
 
 const oceanGame = (req, res) => {
     res.send(`<html>
-    <body><h3>
-        Please enter as many <font style ="color:darkblue;" >Ocean </font>eans names as you can, one per line:<p> Time:
-        <label id="minutes">00</label>
-        <label id="colon">:</label>
-        <label id="seconds">00</label>  
-        <script type="text/javascript">
-        let minutesLabel = document.getElementById("minutes");
-        let secondsLabel = document.getElementById("seconds");
-        let totalSeconds = 0;
-        setInterval(setTime, 1000);
-        
-        function setTime()
-        {
-            ++totalSeconds;
-            secondsLabel.innerHTML = pad(totalSeconds%60);
-            minutesLabel.innerHTML = pad(parseInt(totalSeconds/60));
-        }
-        
-        function pad(val)
-        {
-            let valString = val + "";
-            if(valString.length < 2)
-            {
-                return "0" + valString;
+    <body><h4>
+        Please enter as many Oceans names as you can, one per line:<label id="timer"></label>
+        <h2 id='timer'></h2>
+        <script> let timer = document.getElementById('timer');
+            let timeElapse = 0;
+            function tick() {
+            timer.innerText = timeElapse;
+            timeElapse++;
             }
-            else
-            {
-                return valString;
-            }
-        }
-        </script></h4></h3>
+            setInterval(tick, 1000);
+          </script>
         <form method="POST" action="/waterGames/OceanGame/oceanGuesses">
             <textarea rows="20" cols="40" placeholder="Type here, one per line..." name="oceanGuesses"></textarea>
             <button type="submit">That's all I can think of!</button>
@@ -52,12 +32,14 @@ const oceanGame = (req, res) => {
         </body>
     </html>`);
 };
-
 const seasGame = (req, res) => {
     res.send(`<html>
-    <body><h3>
-        Please enter as many names of <font style ="color:blue;" >seas </font> as possible, one per line:<br/>
-        <p> Time:
+    <body><h4>
+        Please enter as many names of seas as possible, one per line:</h4>
+        <form method="POST" action="/waterGames/seaGame/seaGuesses">
+            <textarea rows="20" cols="40" placeholder="Type here, one per line..." name="seaGuesses"></textarea>
+            <button type="submit">That's all I can think of!</button>
+        </form>
         <label id="minutes">00</label>
         <label id="colon">:</label>
         <label id="seconds">00</label>  
@@ -66,14 +48,14 @@ const seasGame = (req, res) => {
         let secondsLabel = document.getElementById("seconds");
         let totalSeconds = 0;
         setInterval(setTime, 1000);
-        
+
         function setTime()
         {
             ++totalSeconds;
             secondsLabel.innerHTML = pad(totalSeconds%60);
             minutesLabel.innerHTML = pad(parseInt(totalSeconds/60));
         }
-        
+
         function pad(val)
         {
             let valString = val + "";
@@ -86,12 +68,8 @@ const seasGame = (req, res) => {
                 return valString;
             }
         }
-        </script></h4>
-        <form method="POST" action="/waterGames/seaGame/seaGuesses">
-            <textarea rows="20" cols="40" placeholder="Type here, one per line..." name="seaGuesses"></textarea>
-            <button type="submit">That's all I can think of!</button>
-        </form>
-        </body></h3>
+    </script>
+    </body>
     </html>`);
 };
 
@@ -109,7 +87,6 @@ const oceanGuesses = (req, res) => {
     const numRight = correctOcean.length;
     const numWrong = total - numRight;
     const missed = oceanList.length - numRight;
-    const percent = (numRight/total)*100;
 
     //create a list
     const playerList = guessedOcean.map((ocean) =>
@@ -142,7 +119,7 @@ const oceanGuesses = (req, res) => {
     <body><h3>
         Sweet, you got <font style="color:green">${numRight} </font> right and <font style="color:red">${numWrong}</font> wrong.<br/> 
         By the way there are another <font style="color:blue">${missed}</font> <i>oceans.</i></h3><br/>
-        <h3 style="color:Blue">${state.name} from ${state.motherland} Results: ${percent}%</h3>
+        <h3 style="color:Blue">${state.name} from ${state.motherland} Results: </h3>
         <h3>You guessed the following Oceans: <font style="color:orange">${total}</font></h3>
         <ol>${playerList}</ol><br/>
         <h4>Correct:<font style="color:green">${numRight} </font> </h4>
@@ -152,12 +129,6 @@ const oceanGuesses = (req, res) => {
         <form method="GET" action="/waterGames/oceanGame">
             <button type="submit">Play Again</button>
         </form>
-        <form method="GET" action="/countryGame">
-        <button type="submit">Country Game</button>
-        </form>
-        <form method="GET" action="/waterGames/seaGame">
-            <button type="submit">Sea Game</button>
-         </form>
         <form method="GET" action="/waterGames/endOceanGame">
             <button type="submit">End Game</button>
         </form>
@@ -179,7 +150,6 @@ const seaGuesses = (req, res) => {
     const numRight = correctSea.length;
     const numWrong = total - numRight;
     const missed = oceanList.length - numRight;
-    const percent = (numRight/total)*100;
 
     //create a list
     const playerList = guessedSea.map((sea) =>
@@ -212,7 +182,7 @@ const seaGuesses = (req, res) => {
     <body><h3>
         Sweet, you got <font style="color:green">${numRight} </font> right and <font style="color:red">${numWrong}</font> wrong.<br/> 
         By the way there are another <font style="color:blue">${missed}</font> <i>seas.</i></h3><br/>
-        <h3 style="color:Blue">${state.name} from ${state.motherland} Results: ${percent}%</h3>
+        <h3 style="color:Blue">${state.name} from ${state.motherland} Results: </h3>
         <h3>You guessed the following seas: <font style="color:orange">${total}</font> </h3>
         <ol>${playerList}</ol><br/>
         <h4>Correct:<font style="color:lightgreen">${numRight} </font> </h4>
@@ -221,12 +191,6 @@ const seaGuesses = (req, res) => {
         <ol>${incorrectList}</ol><br/>
         <form method="GET" action="/waterGames/seaGame">
             <button type="submit">Play Again</button>
-        </form>
-        <form method="GET" action="/waterGames/oceanGame">
-            <button type="submit">Ocean Game</button>
-        </form>
-        <form method="GET" action="/countryGame">
-            <button type="submit">Country Game</button>
         </form>
         <form method="GET" action="/waterGames/endSeaGame">
             <button type="submit">End Game</button>
@@ -242,14 +206,11 @@ const endSeaGame = (req, res) => {
         ${capitalize(itemList)}
     </li>`).join("")
     res.send(`<html>
-    <body><h3 style="font-size:40px"> Thank you for playing! &#128031;</h3>
+    <body><h3 style="font-size:40px"> Thank you for playing! &#129409;</h3>
         <h4>Here is the list of seas you can review for next time:</h4>
         <ol>${seaLists}</ol><br/>
         <form method="GET" action="/startGame">
             <button type="submit">Play Again</button>
-        </form>
-        <form method="GET" action="/countryGame">
-            <button type="submit">Country Game</button>
         </form>
         <form method="GET" action="/quit">
             <button type="submit">Exit</button>
@@ -264,7 +225,7 @@ const endOceanGame = (req, res) => {
         ${capitalize(itemList2)}
     </li>`).join("")
     res.send(`<html>
-    <body><h3 style="font-size:40px"> Thank you for playing! &#128011;</h3>
+    <body><h3 style="font-size:40px"> Thank you for playing! &#129409;</h3>
         <h4> Here is the list of Oceans you can review for next time:</h4>
         <ol>${oceanLists}</ol><br/>
         <form method="GET" action="/startGame">

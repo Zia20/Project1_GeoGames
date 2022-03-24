@@ -1,0 +1,40 @@
+<! –– credit to https://codepen.io/reynnor/pen/vmNaeM ––>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <label id="minutes">00</label>
+    <label id="colon">:</label>
+    <label id="seconds">00</label>  
+    
+<script type="text/javascript">
+        let minutesLabel = document.getElementById("minutes");
+        let secondsLabel = document.getElementById("seconds");
+        let totalSeconds = 0;
+        setInterval(setTime, 1000);
+
+        function setTime()
+        {
+            ++totalSeconds;
+            secondsLabel.innerHTML = pad(totalSeconds%60);
+            minutesLabel.innerHTML = pad(parseInt(totalSeconds/60));
+        }
+
+        function pad(val)
+        {
+            let valString = val + "";
+            if(valString.length < 2)
+            {
+                return "0" + valString;
+            }
+            else
+            {
+                return valString;
+            }
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

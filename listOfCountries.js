@@ -245,7 +245,6 @@ const countryList = [
 	"Venezuela",
 	"Viet Nam",
 	"Virgin Islands",
-	"Virgin Islands",
 	"Wallis and Futuna",
 	"Western Sahara",
 	"Yemen",

@@ -29,6 +29,42 @@ const handleContact = (req, res) => {
     }
 };
 
+const handleCountry = (req, res) => {
+    const { motherland } = req.query;
+    state.motherland = motherland;
+    console.log('!!!', motherland);
+    if(state.age>=12){
+        res.send(`<html>
+        <body>
+            <h3>Thanks ${state.name} ${state.age}, from ${state.motherland}! <br/>
+            Are you ready to list as many countries as you can?</h3><br/>
+            <form method="GET" action="/countryGame">
+                <button type="submit">Yes</button>
+            </form>
+            <form method="GET" action="/quit">
+                <button type="submit">No</button>
+            </form>
+        </body>
+        </html>`);
+    }else{
+        res.send(`<html>
+        <body>
+            <h3>Thanks ${state.name} ${state.age}, from ${state.motherland}! <br/>
+             Which water game would you like to play?</h3><br/>
+            <form method="GET" action="/waterGames/oceanGame">
+                <button type="submit">Ocean Game</button>
+            </form>
+            <form method="GET" action="/waterGames/seaGame">
+                <button type="submit">Sea Game</button>
+            </form>
+            <form method="GET" action="/quit">
+                <button type="submit">Exit</button>
+            </form>
+        </body>
+        </html>`);
+    }
+};
+
 const waterGames = (req, res) => {
     const { motherland } = req.query;
     state.motherland = motherland;
@@ -48,29 +84,6 @@ const waterGames = (req, res) => {
     </body>
     </html>`);
 }
-
-//
-const handleCountry = (req, res) => {
-    const { motherland } = req.query;
-    state.motherland = motherland;
-    console.log('!!!', motherland);
-    if(state.age>=12){
-        res.send(`<html>
-        <body>
-            <h3>Thanks ${state.name} ${state.age}, from ${state.motherland}! <br/>
-            Are you ready to list as many countries as you can?</h3><br/>
-            <form method="GET" action="/countryGame">
-                <button type="submit">Yes</button>
-            </form>
-            <form method="GET" action="/quit">
-                <button type="submit">No</button>
-            </form>
-        </body>
-        </html>`);
-    }else{
-        waterGames()
-    }
-};
 
 module.exports = {
     handleContact,
