@@ -14,8 +14,8 @@ const seaList = listOfSeas.seaList.map(c => c.toLowerCase());
 
 const oceanGame = (req, res) => {
     res.send(`<html>
-    <body>
-        Please enter as many Oceans names as you can, one per line:
+    <body><h4>
+        Please enter as many Oceans names as you can, one per line:<h4></br>
         <form method="POST" action="/waterGames/OceanGame/oceanGuesses">
             <textarea rows="20" cols="40" placeholder="Type here, one per line..." name="oceanGuesses"></textarea>
             <button type="submit">That's all I can think of!</button>
@@ -25,8 +25,8 @@ const oceanGame = (req, res) => {
 };
 const seasGame = (req, res) => {
     res.send(`<html>
-    <body>
-        Please enter as many seas names as you can, one per line:
+    <body><h4>
+        Please enter as many names of seas as possible, one per line:</h4>
         <form method="POST" action="/waterGames/seaGame/seaGuesses">
             <textarea rows="20" cols="40" placeholder="Type here, one per line..." name="seaGuesses"></textarea>
             <button type="submit">That's all I can think of!</button>
@@ -81,8 +81,8 @@ const oceanGuesses = (req, res) => {
     <body><h3>
         Sweet, you got <font style="color:green">${numRight} </font> right and <font style="color:red">${numWrong}</font> wrong.<br/> 
         By the way there are another <font style="color:blue">${missed}</font> <i>oceans.</i></h3><br/>
-        <h4 style="color:Blue">${state.name} Results: </h4>
-        <h4>You guessed the following Oceans: </h4>
+        <h3 style="color:Blue">${state.name} from ${state.motherland} Results: </h3>
+        <h3>You guessed the following Oceans: <font style="color:orange">${total}</font></h3>
         <ol>${playerList}</ol><br/>
         <h4>Correct:<font style="color:green">${numRight} </font> </h4>
         <ol>${compareLists}</ol><br/>
@@ -143,34 +143,34 @@ const seaGuesses = (req, res) => {
     res.send(`<html>
     <body><h3>
         Sweet, you got <font style="color:green">${numRight} </font> right and <font style="color:red">${numWrong}</font> wrong.<br/> 
-        By the way there are another <font style="color:blue">${missed}</font> <i>Seas.</i></h3><br/>
-        <h4 style="color:Blue">${state.name} Results: </h4>
-        <h4>You guessed the following Seas: </h4>
+        By the way there are another <font style="color:blue">${missed}</font> <i>seas.</i></h3><br/>
+        <h3 style="color:Blue">${state.name} from ${state.motherland} Results: </h3>
+        <h3>You guessed the following seas: <font style="color:orange">${total}</font> </h3>
         <ol>${playerList}</ol><br/>
-        <h4>Correct:<font style="color:green">${numRight} </font> </h4>
+        <h4>Correct:<font style="color:lightgreen">${numRight} </font> </h4>
         <ol>${compareLists}</ol><br/>
         <h4>Incorrect:<font style="color:red">${numWrong}</font></h4>
         <ol>${incorrectList}</ol><br/>
-        <form method="GET" action="/waterGames/seaGame"> 
+        <form method="GET" action="/waterGames/seaGame">
             <button type="submit">Play Again</button>
         </form>
-        <form method="GET" action="waterGames/endseaGame">
+        <form method="GET" action="/waterGames/endSeaGame">
             <button type="submit">End Game</button>
         </form>
     </body>
     </html>`);
     };
 
-const endseaGame = (req, res) => {
+const endSeaGame = (req, res) => {
     //create a list
-    const seaList = seaList.map((itemList) =>
+    const seaLists = seaList.map((itemList) =>
     `<li>
         ${capitalize(itemList)}
     </li>`).join("")
     res.send(`<html>
-    <body><h3>
-        Thank you for playing! Here is the list of seas you can review for next time:</h3>
-        <ol>${seaList}</ol><br/>
+    <body><h3 style="font-size:40px"> Thank you for playing! &#129409;</h3>
+        <h4>Here is the list of seas you can review for next time:</h4>
+        <ol>${seaLists}</ol><br/>
         <form method="GET" action="/startGame">
             <button type="submit">Play Again</button>
         </form>
@@ -182,13 +182,13 @@ const endseaGame = (req, res) => {
 
 const endOceanGame = (req, res) => {
     //create a list
-    const oceanLists = oceanList.map((itemList) =>
+    const oceanLists = oceanList.map((itemList2) =>
     `<li>
-        ${capitalize(itemList)}
+        ${capitalize(itemList2)}
     </li>`).join("")
     res.send(`<html>
-    <body><h3>
-        Thank you for playing! Here is the list of Oceans you can review for next time:</h3>
+    <body><h3 style="font-size:40px"> Thank you for playing! &#129409;</h3>
+        <h4> Here is the list of Oceans you can review for next time:</h4>
         <ol>${oceanLists}</ol><br/>
         <form method="GET" action="/startGame">
             <button type="submit">Play Again</button>
@@ -206,5 +206,5 @@ module.exports = {
     oceanGuesses,
     seaGuesses,
     endOceanGame,
-    endseaGame,
+    endSeaGame,
 };

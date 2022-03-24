@@ -43,7 +43,7 @@ app.post('/waterGames/seaGame/seaGuesses', waterGames.seaGuesses);
 
 //Exit Game
 app.get('/endGame', countryGame.endGame);
-app.get('/waterGames/endSeaGame', waterGames.endseaGame);
+app.get('/waterGames/endSeaGame', waterGames.endSeaGame);
 app.get('/waterGames/endOceanGame', waterGames.endOceanGame);
 
 app.get('/quit', (req, res) =>{

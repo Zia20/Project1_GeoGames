@@ -10,9 +10,9 @@ const handleContact = (req, res) => {
     state.age = age;
     if(age >=12){
         res.send(`<html>
-        <body><h3>What country are you from?</h3>
+        <body><h3>What country are you from?</h3></br>
         <form method="GET" action="/country">
-            Country: <input type="text" name="motherland" required/><br/>
+            Country: <input type="text" name="motherland" required/><br/><br/>
             <button type="submit">Submit</button>
         </form>
         </body>
@@ -20,9 +20,9 @@ const handleContact = (req, res) => {
 
     }else{
         res.send(`<html>
-        <body><h3>What country are you from?</h3>
+        <body><h3>What country are you from?</h3></br>
          <form method="GET" action="/waterGames">
-            Country: <input type="text" name="motherland" required/><br/>
+            Country:  <input type="text" name="motherland" required/><br/>
             <button type="submit">Submit</button>
         </form>
         </body>
@@ -33,8 +33,8 @@ const handleContact = (req, res) => {
 const waterGames = (req, res) => {
     res.send(`<html>
     <body>
-        <h4>Thanks ${state.name}, ${state.age} from ${state.motherland}! <br/>
-        Which water game do you want to play?</h4><br/>
+        <h3>Thanks ${state.name} ${state.age}, from ${state.motherland}! <br/>
+        Which water game would you want to play?</h3><br/>
         <form method="GET" action="/waterGames/oceanGame">
             <button type="submit">Ocean Game</button>
         </form>
@@ -48,6 +48,7 @@ const waterGames = (req, res) => {
     </html>`);
 }
 
+//
 const handleCountry = (req, res) => {
     const { motherland } = req.query;
     state.motherland = motherland;
@@ -55,8 +56,8 @@ const handleCountry = (req, res) => {
     if(state.age>=12){
         res.send(`<html>
         <body>
-            <h4>Thanks ${state.name}, ${state.age} from ${state.motherland}! <br/>
-            Are you ready to list as many countries as you can?</h4><br/>
+            <h3>Thanks ${state.name} ${state.age}, from ${state.motherland}! <br/>
+            Are you ready to list as many countries as you can?</h3><br/>
             <form method="GET" action="/countryGame">
                 <button type="submit">Yes</button>
             </form>

@@ -22,8 +22,8 @@ const welcomeGame = (req, res) => {
 
 const handleGame = (req, res) => {
     res.send(`<html>
-    <body>
-        Please enter as many country names as you can, one per line:
+    <body><h3>
+        Please enter as many country names as you can, one per line:</h3>
         <form method="POST" action="/countryGame/guesses">
             <textarea rows="20" cols="40" placeholder="Type here, one per line..." name="guesses"></textarea>
             <button type="submit">That's all I can think of!</button>
@@ -77,10 +77,10 @@ const handleGuesses = (req, res) => {
     res.send(`<html>
     <body><h3>
         Sweet, you got <font style="color:green">${numRight} </font> right and <font style="color:red">${numWrong}</font> wrong.<br/> 
-        By the way there are another <font style="color:blue">${missed}</font> <i>countries.</i></h3><br/>
+        By the way there are another <font style="color:blue">${missed}</font> <i>countries.</i></h3>
         <h4>These include 55 dependencies, Antarctica and other areas that should always be consided.</h4><br/>
-        <h4 style="color:Blue">${state.name} Results: </h4>
-        <h4>You guessed the following countries: </h4>
+        <h4 style="color:Blue">${state.name} from ${state.motherland} Results: </h4>
+        <h4>You guessed the following countries: <font style="color:orange">${total}</font></h4>
         <ol>${playerList}</ol><br/>
         <h4>Correct:<font style="color:green">${numRight} </font> </h4>
         <ol>${compareLists}</ol><br/>
@@ -103,8 +103,8 @@ const endGame = (req, res) => {
         ${capitalize(itemList)}
     </li>`).join("")
     res.send(`<html>
-    <body><h3>
-        Thank you for playing! Here is the list of countries you can review:</h3>
+    <body><h3 style="font-size:50px"> Thank you for playing! &#128024;</h3>
+    <h4>Here is the list of countries you can review for next time:</h4>
         <ol>${countriesList}</ol><br/>
         <form method="GET" action="/startGame">
             <button type="submit">Play Again</button>
