@@ -14,24 +14,84 @@ const seaList = listOfSeas.seaList.map(c => c.toLowerCase());
 
 const oceanGame = (req, res) => {
     res.send(`<html>
-    <body><h4>
-        Please enter as many Oceans names as you can, one per line:<h4></br>
+    <body><h3>
+        Please enter as many Oceans names as you can, one per line:<p> Time:
+        <label id="minutes">00</label>
+        <label id="colon">:</label>
+        <label id="seconds">00</label>  
+        <script type="text/javascript">
+        let minutesLabel = document.getElementById("minutes");
+        let secondsLabel = document.getElementById("seconds");
+        let totalSeconds = 0;
+        setInterval(setTime, 1000);
+        
+        function setTime()
+        {
+            ++totalSeconds;
+            secondsLabel.innerHTML = pad(totalSeconds%60);
+            minutesLabel.innerHTML = pad(parseInt(totalSeconds/60));
+        }
+        
+        function pad(val)
+        {
+            let valString = val + "";
+            if(valString.length < 2)
+            {
+                return "0" + valString;
+            }
+            else
+            {
+                return valString;
+            }
+        }
+        </script></h4></h3>
         <form method="POST" action="/waterGames/OceanGame/oceanGuesses">
             <textarea rows="20" cols="40" placeholder="Type here, one per line..." name="oceanGuesses"></textarea>
             <button type="submit">That's all I can think of!</button>
         </form>
-    </body>
+        </body>
     </html>`);
 };
+
 const seasGame = (req, res) => {
     res.send(`<html>
     <body><h4>
-        Please enter as many names of seas as possible, one per line:</h4>
+        Please enter as many names of seas as possible, one per line:<br/>
+        <p> Time:
+        <label id="minutes">00</label>
+        <label id="colon">:</label>
+        <label id="seconds">00</label>  
+        <script type="text/javascript">
+        let minutesLabel = document.getElementById("minutes");
+        let secondsLabel = document.getElementById("seconds");
+        let totalSeconds = 0;
+        setInterval(setTime, 1000);
+        
+        function setTime()
+        {
+            ++totalSeconds;
+            secondsLabel.innerHTML = pad(totalSeconds%60);
+            minutesLabel.innerHTML = pad(parseInt(totalSeconds/60));
+        }
+        
+        function pad(val)
+        {
+            let valString = val + "";
+            if(valString.length < 2)
+            {
+                return "0" + valString;
+            }
+            else
+            {
+                return valString;
+            }
+        }
+        </script></h4>
         <form method="POST" action="/waterGames/seaGame/seaGuesses">
             <textarea rows="20" cols="40" placeholder="Type here, one per line..." name="seaGuesses"></textarea>
             <button type="submit">That's all I can think of!</button>
         </form>
-    </body>
+        </body>
     </html>`);
 };
 

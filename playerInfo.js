@@ -12,7 +12,7 @@ const handleContact = (req, res) => {
         res.send(`<html>
         <body><h3>What country are you from?</h3></br>
         <form method="GET" action="/country">
-            Country: <input type="text" name="motherland" required/><br/><br/>
+            Country: <input type="text" name="motherland" required/><br/>
             <button type="submit">Submit</button>
         </form>
         </body>
@@ -21,20 +21,21 @@ const handleContact = (req, res) => {
     }else{
         res.send(`<html>
         <body><h3>What country are you from?</h3></br>
-         <form method="GET" action="/waterGames">
-            Country:  <input type="text" name="motherland" required/><br/>
-            <button type="submit">Submit</button>
-        </form>
+        <form method="GET" action="/waterGames">
+            Country:<input type="text" name="motherland" required/><br/>
+            <button type="submit">Submit</button></form>
         </body>
         </html>`);
     }
 };
 
 const waterGames = (req, res) => {
+    const { motherland } = req.query;
+    state.motherland = motherland;
     res.send(`<html>
     <body>
-        <h3>Thanks ${state.name} ${state.age}, from ${state.motherland}! <br/>
-        Which water game would you want to play?</h3><br/>
+    <h3>Thanks ${state.name} ${state.age}, from ${state.motherland}! <br/>
+        Which water game would you like to play?</h3><br/>
         <form method="GET" action="/waterGames/oceanGame">
             <button type="submit">Ocean Game</button>
         </form>

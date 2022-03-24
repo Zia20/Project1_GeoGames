@@ -18,7 +18,6 @@ const gamesSelection = (req, res) => {
     </html>`);
 };
 
-
 module.exports = {
     gamesSelection,
 };

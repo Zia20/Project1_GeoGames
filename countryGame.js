@@ -23,7 +23,37 @@ const welcomeGame = (req, res) => {
 const handleGame = (req, res) => {
     res.send(`<html>
     <body><h3>
-        Please enter as many country names as you can, one per line:</h3>
+        Please enter as many <font style= "color: brown;">country </font> names as you can, one per line:<p> Time:
+        <label id="minutes">00</label>
+        <label id="colon">:</label>
+        <label id="seconds">00</label>  
+        <script type="text/javascript">
+        let minutesLabel = document.getElementById("minutes");
+        let secondsLabel = document.getElementById("seconds");
+        let totalSeconds = 0;
+        setInterval(setTime, 1000);
+        
+        function setTime()
+        {
+            ++totalSeconds;
+            secondsLabel.innerHTML = pad(totalSeconds%60);
+            minutesLabel.innerHTML = pad(parseInt(totalSeconds/60));
+        }
+        
+        function pad(val)
+        {
+            let valString = val + "";
+            if(valString.length < 2)
+            {
+                return "0" + valString;
+            }
+            else
+            {
+                return valString;
+            }
+        }
+        </script>
+        </h3>
         <form method="POST" action="/countryGame/guesses">
             <textarea rows="20" cols="40" placeholder="Type here, one per line..." name="guesses"></textarea>
             <button type="submit">That's all I can think of!</button>

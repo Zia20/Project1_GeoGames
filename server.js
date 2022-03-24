@@ -17,7 +17,7 @@ app.get("/startGame", (req, res) => {
     <body><h2>Please type your name and age.<h2>
     <form method="GET" action="/contact">
         Name: <input type="text" name="name" required/><br/>
-        Age: <input type="text" name="age" required/><br/>
+        Age: <input type="number" name="age" required/><br/>
         <button type="submit">Submit</button>
     </form>
     </body>
@@ -48,9 +48,10 @@ app.get('/waterGames/endOceanGame', waterGames.endOceanGame);
 
 app.get('/quit', (req, res) =>{
     res.send(`<html>
-    <body><h1> Goodbye!!! <span style='font-size:30px;'>&#128075;</span>
+    <body style="text-align:center;">
+    <h1 style="text-align:center;"> Goodbye!!! <span style='font-size:30px;'>&#128075;</span>
     <p style="font-size:100px">&#128553;</p> Come back again!</h1>
-    <form method="GET" action="/startGame">
+    <form method="GET" action="/startGame"><br><br>
         <button type="submit">Play Again</button>
     </form>
     </body>
