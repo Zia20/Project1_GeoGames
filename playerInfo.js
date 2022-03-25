@@ -40,8 +40,9 @@ const handleCountry = (req, res) => {
         res.send(`<html>
         <body style=font-size:20px;><br/>
         <h2 style="text-align:center;">
-            Thanks <font style="color:blue">${state.name} ${state.age}</font>, from <font style="color:green">${state.motherland}</font>! <br/>
-            Are you ready to list as many countries as you can?<br/><br/>
+            Thank you <font style="color:blue">${state.name} ${state.age}</font>, 
+            from <font style="color:green">${state.motherland}</font>! <br/>
+            <br/>Are you ready to name as many countries as possible?<br/><br/>
             <form method="GET" action="/countryGame">
                 <button type="submit">Yes</button>
             </form>
@@ -54,7 +55,7 @@ const handleCountry = (req, res) => {
         res.send(`<html>
         <body style=font-size:20px;><br/>
         <h2 style="text-align:center;">
-            Thanks <font style="color:blue">${state.name} ${state.age}</font>, from <font style="color:green">${state.motherland}</font>! <br/>
+            Thank you <font style="color:blue">${state.name} ${state.age}</font>, from <font style="color:green">${state.motherland}</font>! <br/>
              Which water game would you like to play?<br/><br/>
             <form method="GET" action="/waterGames/oceanGame">
                 <button type="submit">Ocean Game</button>
@@ -70,30 +71,9 @@ const handleCountry = (req, res) => {
     }
 };
 
-//Handle Water Games
-const waterGames = (req, res) => {
-    const { motherland } = req.query;
-    state.motherland = motherland;
-    res.send(`<body style=font-size:20px;>
-    <h2 style="text-align:center;">
-        Thanks <font style="color:blue">${state.name} ${state.age}</font>, from <font style="color:green">${state.motherland}</font>! <br/>
-        Which water game would you like to play?<br/><br/>
-        <form method="GET" action="/waterGames/oceanGame">
-            <button type="submit">Ocean Game</button>
-        </form>
-        <form method="GET" action="/waterGames/seaGame">
-            <button type="submit">Sea Game</button>
-        </form>
-        <form method="GET" action="/quit">
-            <button type="submit">Exit</button>
-        </form><h2/>
-    </body>
-    </html>`);
-}
-
 module.exports = {
     handleContact,
     handleCountry,
-    waterGames,
+    //waterGames,
     state,
 };

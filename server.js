@@ -33,11 +33,11 @@ app.get('/contact', playerInfo.handleContact);
 app.get('/country', playerInfo.handleCountry);
 
 //Country Game
-app.get('/waterGames', playerInfo.waterGames);
 app.get('/countryGame', countryGame.handleGame);
 app.post('/countryGame/guesses', countryGame.handleGuesses);
 
 //Water Games Selection
+app.get('/waterGames', waterGames.waterGames);
 app.get('/waterGames/oceanGame', waterGames.oceanGame);
 app.get('/waterGames/seaGame', waterGames.seasGame);
 
@@ -54,8 +54,9 @@ app.get('/waterGames/endOceanGame', waterGames.endOceanGame);
 app.get('/quit', (req, res) =>{
     res.send(`<html>
     <body style=font-size:35px; style="text-align:center;">
-    <h1 style="text-align:center;"> Goodbye!!! <span style='font-size:30px;'>&#128075;</span>
-    <p style="font-size:100px">&#128553;</p> Come back again!
+    <h1 style="text-align:center;"> Goodbye!!!<span style='font-size:30px;'>&#128075;</span>
+    <br/>Thank you for Playing!!
+    <p style="font-size:85px">&#128553;</p> Come back again!
     <form method="GET" action="/startGame"><br>
         <button>Play Again</button>
     </form></h1>

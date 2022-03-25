@@ -14,12 +14,13 @@ const countryList = listOfCountries.countryList.map(c => c.toLowerCase());
 //Welcome Game - startGame
 const welcomeGame = (req, res) => {
     message = `<body style=font-size:30px; >
-    <h1 style="text-align:center;">Welcome to the game!!! <h1>
-    <h2 style="text-align:center; color: green;"> Do you want to play a secret game or quit? </h2><br/>
+    <h1 style="text-align:center;">Welcome to the game!!!
+    <h2 style="text-align:center; color: green;"> Do you want to play a secret game or quit? <br/><br/>
     <form style="text-align:center;" method="GET" action="/startGame">
-    <a id="link"><button>Play</button></a></form>
+        <a id="link"><button>Play Game</button></a></form>
     <form style="text-align:center;" method="GET" action="/quit">
-    <a id="link"><button background-color: green; width:20%>Quit</button></a></form></body>`;
+        <a id="link"><button background-color: green; width:20%>Exit</button></a>
+    </form></h1></h2></body>`;
     res.send(message)
   };
 
@@ -27,7 +28,7 @@ const welcomeGame = (req, res) => {
 const handleGame = (req, res) => {
     res.send(`<html>
     <body><h3><br/>
-        Please enter as many <font style= "color: brown;">country </font> names as you can, one per line:<p> Time:
+        Please name as many <font style= "color: brown;">country </font> as possible, one per line:<p> Time:
         <label id="minutes">00</label>
         <label id="colon">:</label>
         <label id="seconds">00</label>  
@@ -81,7 +82,8 @@ const handleGuesses = (req, res) => {
     const numRight = correctCountries.length;
     const numWrong = total - numRight;
     const missed = countryList.length - numRight;
-    const percent = (numRight/total)*100;
+    const percentage = (numRight/countryList.length)*100;
+    let percent = percentage.toFixed(2)
 
     //create a list
     const playerList = guessedCountries.map((country) =>
@@ -114,7 +116,7 @@ const handleGuesses = (req, res) => {
     <body><h3>
         Sweet, you got <font style="color:green">${numRight} </font> right and <font style="color:red">${numWrong}</font> wrong.<br/> 
         By the way there are another <font style="color:blue">${missed}</font> <i>countries.</i></h3>
-        <h4>These include 55 dependencies, Antarctica and other areas that should always be consided.</h4><br/>
+        <h4>These include 55 dependencies, Antarctica and other areas that should always be consided.</h4>
         <h4 style="color:Blue">${state.name} from ${state.motherland} Results: ${percent}% </h4>
         <h4>You guessed the following countries: <font style="color:orange">${total}</font></h4>
         <ol>${playerList}</ol><br/>

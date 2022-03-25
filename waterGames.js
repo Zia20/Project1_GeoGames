@@ -12,11 +12,34 @@ const capitalize = (s) => {
 const oceanList = listOfSeas.oceanList.map(c => c.toLowerCase());
 const seaList = listOfSeas.seaList.map(c => c.toLowerCase());
 
+//Handle Water Games
+const waterGames = (req, res) => {
+    const { motherland } = req.query;
+    state.motherland = motherland;
+    res.send(`<body style=font-size:20px;>
+    <h2 style="text-align:center;">
+        Thank you <font style="color:blue">${state.name} ${state.age}</font>, 
+        from <font style="color:green">${state.motherland}</font>! <br/>
+        Which water game would you like to play?<br/><br/>
+        <form method="GET" action="/waterGames/oceanGame">
+            <button type="submit">Ocean Game</button>
+        </form>
+        <form method="GET" action="/waterGames/seaGame">
+            <button type="submit">Sea Game</button>
+        </form>
+        <form method="GET" action="/quit">
+            <button type="submit">Exit</button>
+        </form><h2/>
+    </body>
+    </html>`);
+}
+
+
 //Handle Ocean Game 
 const oceanGame = (req, res) => {
     res.send(`<html>
     <body><h3><br/>
-        Please enter as many <font style ="color:darkblue;" >Ocean </font>eans names as you can, one per line:<p> Time:
+        Please name as many <font style ="color:darkblue;" >Ocean </font> as possible, one per line:<p> Time:
         <label id="minutes">00</label>
         <label id="colon">:</label>
         <label id="seconds">00</label>  
@@ -58,7 +81,7 @@ const oceanGame = (req, res) => {
 const seasGame = (req, res) => {
     res.send(`<html>
     <body><h3>
-        Please enter as many names of <font style ="color:blue;" >seas </font> as possible, one per line:<br/>
+        Please name as many <font style ="color:blue;" >seas </font> as possible, one per line:<br/>
         <p> Time:
         <label id="minutes">00</label>
         <label id="colon">:</label>
@@ -112,7 +135,8 @@ const oceanGuesses = (req, res) => {
     const numRight = correctOcean.length;
     const numWrong = total - numRight;
     const missed = oceanList.length - numRight;
-    const percent = (numRight/total)*100;
+    const percentage = (numRight/oceanList.length)*100;
+    let percent = percentage.toFixed(2)
 
     //create a list
     const playerList = guessedOcean.map((ocean) =>
@@ -144,7 +168,7 @@ const oceanGuesses = (req, res) => {
     res.send(`<html>
     <body><h3>
         Sweet, you got <font style="color:green">${numRight} </font> right and <font style="color:red">${numWrong}</font> wrong.<br/> 
-        By the way there are another <font style="color:blue">${missed}</font> <i>oceans.</i></h3><br/>
+        By the way there are another <font style="color:blue">${missed}</font> <i>oceans.</i></h3>
         <h3 style="color:Blue">${state.name} from ${state.motherland} Results: ${percent}%</h3>
         <h3>You guessed the following Oceans: <font style="color:orange">${total}</font></h3>
         <ol>${playerList}</ol><br/>
@@ -183,7 +207,8 @@ const seaGuesses = (req, res) => {
     const numRight = correctSea.length;
     const numWrong = total - numRight;
     const missed = oceanList.length - numRight;
-    const percent = (numRight/total)*100;
+    const percentage = (numRight/seaList.length)*100;
+    let percent = percentage.toFixed(2)
 
     //create a list
     const playerList = guessedSea.map((sea) =>
@@ -285,6 +310,7 @@ const endOceanGame = (req, res) => {
 
 
 module.exports = {
+    waterGames,
     seasGame,
     oceanGame,
     oceanGuesses,
