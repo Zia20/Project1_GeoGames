@@ -50,6 +50,7 @@ app.get('/endGame', countryGame.endGame);
 app.get('/waterGames/endSeaGame', waterGames.endSeaGame);
 app.get('/waterGames/endOceanGame', waterGames.endOceanGame);
 
+//Quit
 app.get('/quit', (req, res) =>{
     res.send(`<html>
     <body style=font-size:35px; style="text-align:center;">

@@ -1,5 +1,5 @@
 
-//People who believe the Earth is flat!!!
+//People who believe the Earth is flat!!! :-(
 const flatEarther = (req, res) => {
     message = `<body style=font-size:30px; ><h1 style="text-align:center;">Hello!!!<h1>
     <style>

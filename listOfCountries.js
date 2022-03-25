@@ -1,5 +1,5 @@
 //credit for this list goes to https://gist.github.com/incredimike/1469814#file-variouscountrylistformats-js
-// List of all countries in a simple list / array.
+// List of all countries in a simple list / array...
 // Sorted alphabetical by country name
 const countryList = [
 	"Afghanistan",

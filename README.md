@@ -11,7 +11,8 @@ Problems:
     2- Difficult to change 'age' input to integer
     3- Difficulty with get vs post method
     4- Image - Didn't have enough time to learn to put jpg as a background
-    4- Timer script; couldn't make it global to insert it in four places
+    5- Timer script; couldn't make it global to insert it in four places
+    6- Git Hub - git pull - tough to read and follow the example of how it's done
 
 
 Solution: Start early, next time I won't wait to start the project. Dive in and see what happens.

@@ -1,9 +1,11 @@
+//Game state
 const state = {
     name: undefined,
     age: undefined,
     motherland: undefined,
 };
 
+//Handle User Info
 const handleContact = (req, res) => {
     const { name, age } = req.query;
     state.name = name;
@@ -29,6 +31,7 @@ const handleContact = (req, res) => {
     }
 };
 
+//Handle Country Game
 const handleCountry = (req, res) => {
     const { motherland } = req.query;
     state.motherland = motherland;
@@ -67,6 +70,7 @@ const handleCountry = (req, res) => {
     }
 };
 
+//Handle Water Games
 const waterGames = (req, res) => {
     const { motherland } = req.query;
     state.motherland = motherland;

@@ -1,3 +1,4 @@
+//Requirements
 const listOfCountries = require('./listOfCountries');
 const { playerInfo, state } = require('./playerInfo');
 
@@ -10,6 +11,7 @@ const capitalize = (s) => {
 //lower case listOfCountries array
 const countryList = listOfCountries.countryList.map(c => c.toLowerCase());
 
+//Welcome Game - startGame
 const welcomeGame = (req, res) => {
     message = `<body style=font-size:30px; >
     <h1 style="text-align:center;">Welcome to the game!!! <h1>
@@ -21,6 +23,7 @@ const welcomeGame = (req, res) => {
     res.send(message)
   };
 
+//Handle country game
 const handleGame = (req, res) => {
     res.send(`<html>
     <body><h3><br/>
@@ -63,6 +66,7 @@ const handleGame = (req, res) => {
     </html>`);
 };
 
+//Handle user guesses - country
 const handleGuesses = (req, res) => {
     const {guesses} = req.body;
     const guessedCountries = guesses.split('\n').map(g => g.trim().toLowerCase()).filter(g => !!g);
@@ -135,6 +139,8 @@ const handleGuesses = (req, res) => {
     </html>`);
     };
 
+
+//End of country game - Review list - Options
 const endGame = (req, res) => {
     //create a list
     const countriesList = countryList.map((itemList) =>

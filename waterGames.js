@@ -1,4 +1,4 @@
-//const listofOceans = require('./listOfSeas');
+//Requirements
 const listOfSeas = require('./listOfSeas');
 const { playerInfo, state } = require('./playerInfo');
 
@@ -12,6 +12,7 @@ const capitalize = (s) => {
 const oceanList = listOfSeas.oceanList.map(c => c.toLowerCase());
 const seaList = listOfSeas.seaList.map(c => c.toLowerCase());
 
+//Handle Ocean Game 
 const oceanGame = (req, res) => {
     res.send(`<html>
     <body><h3><br/>
@@ -53,6 +54,7 @@ const oceanGame = (req, res) => {
     </html>`);
 };
 
+//Handle Sea Game
 const seasGame = (req, res) => {
     res.send(`<html>
     <body><h3>
@@ -95,6 +97,7 @@ const seasGame = (req, res) => {
     </html>`);
 };
 
+//Handle User Guesses
 const oceanGuesses = (req, res) => {
     const {oceanGuesses} = req.body;
     const guessedOcean = oceanGuesses.split('\n').map(g => g.trim().toLowerCase()).filter(g => !!g);
@@ -165,6 +168,7 @@ const oceanGuesses = (req, res) => {
     </html>`);
     };
 
+//Handle User Guesses
 const seaGuesses = (req, res) => {
     const {seaGuesses} = req.body;
     const guessedSea = seaGuesses.split('\n').map(g => g.trim().toLowerCase()).filter(g => !!g);
@@ -235,6 +239,8 @@ const seaGuesses = (req, res) => {
     </html>`);
     };
 
+
+//End of Sea Game - Review List - Options
 const endSeaGame = (req, res) => {
     //create a list
     const seaLists = seaList.map((itemList) =>
@@ -257,6 +263,7 @@ const endSeaGame = (req, res) => {
     </html>`);
 };
 
+//End of Ocean Game - Review List - Options
 const endOceanGame = (req, res) => {
     //create a list
     const oceanLists = oceanList.map((itemList2) =>
