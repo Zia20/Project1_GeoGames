@@ -14,7 +14,7 @@ const seaList = listOfSeas.seaList.map(c => c.toLowerCase());
 
 const oceanGame = (req, res) => {
     res.send(`<html>
-    <body><h3>
+    <body><h3><br/>
         Please enter as many <font style ="color:darkblue;" >Ocean </font>eans names as you can, one per line:<p> Time:
         <label id="minutes">00</label>
         <label id="colon">:</label>
@@ -46,7 +46,7 @@ const oceanGame = (req, res) => {
         }
         </script></h4></h3>
         <form method="POST" action="/waterGames/OceanGame/oceanGuesses">
-            <textarea rows="20" cols="40" placeholder="Type here, one per line..." name="oceanGuesses"></textarea>
+            <textarea rows="20" cols="40" placeholder="Type here, one per line..." name="oceanGuesses"></textarea><br/><br/>
             <button type="submit">That's all I can think of!</button>
         </form>
         </body>
@@ -88,7 +88,7 @@ const seasGame = (req, res) => {
         }
         </script></h4>
         <form method="POST" action="/waterGames/seaGame/seaGuesses">
-            <textarea rows="20" cols="40" placeholder="Type here, one per line..." name="seaGuesses"></textarea>
+            <textarea rows="20" cols="40" placeholder="Type here, one per line..." name="seaGuesses"></textarea><br/><br/>
             <button type="submit">That's all I can think of!</button>
         </form>
         </body></h3>

@@ -11,18 +11,19 @@ const capitalize = (s) => {
 const countryList = listOfCountries.countryList.map(c => c.toLowerCase());
 
 const welcomeGame = (req, res) => {
-    message = `<h1 style="text-align:center;">Welcome to the game!!! <h1>
+    message = `<body style=font-size:30px; >
+    <h1 style="text-align:center;">Welcome to the game!!! <h1>
     <h2 style="text-align:center; color: green;"> Do you want to play a secret game or quit? </h2><br/>
     <form style="text-align:center;" method="GET" action="/startGame">
     <a id="link"><button>Play</button></a></form>
     <form style="text-align:center;" method="GET" action="/quit">
-    <a id="link"><button>Quit</button></a></form>`;
+    <a id="link"><button background-color: green; width:20%>Quit</button></a></form></body>`;
     res.send(message)
   };
 
 const handleGame = (req, res) => {
     res.send(`<html>
-    <body><h3>
+    <body><h3><br/>
         Please enter as many <font style= "color: brown;">country </font> names as you can, one per line:<p> Time:
         <label id="minutes">00</label>
         <label id="colon">:</label>
@@ -55,7 +56,7 @@ const handleGame = (req, res) => {
         </script>
         </h3>
         <form method="POST" action="/countryGame/guesses">
-            <textarea rows="20" cols="40" placeholder="Type here, one per line..." name="guesses"></textarea>
+            <textarea rows="20" cols="40" placeholder="Type here, one per line..." name="guesses"></textarea><br/><br/>
             <button type="submit">That's all I can think of!</button>
         </form>
     </body>

@@ -10,9 +10,9 @@ const handleContact = (req, res) => {
     state.age = age;
     if(age >=12){
         res.send(`<html>
-        <body><h3>What country are you from?</h3></br>
+        <body><h3 style=font-size:20px;>What country are you from?</h3>
         <form method="GET" action="/country">
-            Country: <input type="text" name="motherland" required/><br/>
+            <h4> Country: <input type="text" name="motherland" required/><br/><br/>
             <button type="submit">Submit</button>
         </form>
         </body>
@@ -20,10 +20,10 @@ const handleContact = (req, res) => {
 
     }else{
         res.send(`<html>
-        <body><h3>What country are you from?</h3></br>
+        <body><h3 style=font-size:30px;>What country are you from?</h3>
         <form method="GET" action="/waterGames">
-            Country:<input type="text" name="motherland" required/><br/>
-            <button type="submit">Submit</button></form>
+            <h4>Country:<input type="text" name="motherland" required/><br/><br/>
+            <button type="submit">Submit</button></form><h4/>
         </body>
         </html>`);
     }
@@ -35,22 +35,24 @@ const handleCountry = (req, res) => {
     console.log('!!!', motherland);
     if(state.age>=12){
         res.send(`<html>
-        <body>
-            <h3>Thanks ${state.name} ${state.age}, from ${state.motherland}! <br/>
-            Are you ready to list as many countries as you can?</h3><br/>
+        <body style=font-size:20px;><br/>
+        <h2 style="text-align:center;">
+            Thanks <font style="color:blue">${state.name} ${state.age}</font>, from <font style="color:green">${state.motherland}</font>! <br/>
+            Are you ready to list as many countries as you can?<br/><br/>
             <form method="GET" action="/countryGame">
                 <button type="submit">Yes</button>
             </form>
             <form method="GET" action="/quit">
                 <button type="submit">No</button>
-            </form>
+            </form><h2/>
         </body>
         </html>`);
     }else{
         res.send(`<html>
-        <body>
-            <h3>Thanks ${state.name} ${state.age}, from ${state.motherland}! <br/>
-             Which water game would you like to play?</h3><br/>
+        <body style=font-size:20px;><br/>
+        <h2 style="text-align:center;">
+            Thanks <font style="color:blue">${state.name} ${state.age}</font>, from <font style="color:green">${state.motherland}</font>! <br/>
+             Which water game would you like to play?<br/><br/>
             <form method="GET" action="/waterGames/oceanGame">
                 <button type="submit">Ocean Game</button>
             </form>
@@ -59,7 +61,7 @@ const handleCountry = (req, res) => {
             </form>
             <form method="GET" action="/quit">
                 <button type="submit">Exit</button>
-            </form>
+            </form><h2/>
         </body>
         </html>`);
     }
@@ -68,10 +70,10 @@ const handleCountry = (req, res) => {
 const waterGames = (req, res) => {
     const { motherland } = req.query;
     state.motherland = motherland;
-    res.send(`<html>
-    <body>
-    <h3>Thanks ${state.name} ${state.age}, from ${state.motherland}! <br/>
-        Which water game would you like to play?</h3><br/>
+    res.send(`<body style=font-size:20px;>
+    <h2 style="text-align:center;">
+        Thanks <font style="color:blue">${state.name} ${state.age}</font>, from <font style="color:green">${state.motherland}</font>! <br/>
+        Which water game would you like to play?<br/><br/>
         <form method="GET" action="/waterGames/oceanGame">
             <button type="submit">Ocean Game</button>
         </form>
@@ -80,7 +82,7 @@ const waterGames = (req, res) => {
         </form>
         <form method="GET" action="/quit">
             <button type="submit">Exit</button>
-        </form>
+        </form><h2/>
     </body>
     </html>`);
 }

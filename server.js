@@ -3,6 +3,7 @@ const app = express();
 const playerInfo = require('./playerInfo');
 const countryGame = require('./countryGame');
 const waterGames = require('./waterGames');
+const flatEarthers = require('./flatEarther')
 
 const PORT = 4004
 
@@ -10,21 +11,24 @@ app.use(express.urlencoded({
     extended: false
 }));
 
-app.get("/", countryGame.welcomeGame);
+//Start
+app.get("/", flatEarthers.flatEarther)
+app.get("/home", countryGame.welcomeGame);
 
+//User enters
 app.get("/startGame", (req, res) => {
     res.send(`<html>
     <body><h2>Please type your name and age.<h2>
     <form method="GET" action="/contact">
         Name: <input type="text" name="name" required/><br/>
-        Age: <input type="number" name="age" required/><br/>
+        Age: <input type="number" name="age" required/><br/><br/>
         <button type="submit">Submit</button>
     </form>
     </body>
     </html>`);
 });
 
-//User Info
+//Handle User Info
 app.get('/contact', playerInfo.handleContact);
 app.get('/country', playerInfo.handleCountry);
 
@@ -48,17 +52,20 @@ app.get('/waterGames/endOceanGame', waterGames.endOceanGame);
 
 app.get('/quit', (req, res) =>{
     res.send(`<html>
-    <body style="text-align:center;">
+    <body style=font-size:35px; style="text-align:center;">
     <h1 style="text-align:center;"> Goodbye!!! <span style='font-size:30px;'>&#128075;</span>
-    <p style="font-size:100px">&#128553;</p> Come back again!</h1>
-    <form method="GET" action="/startGame"><br><br>
-        <button type="submit">Play Again</button>
-    </form>
+    <p style="font-size:100px">&#128553;</p> Come back again!
+    <form method="GET" action="/startGame"><br>
+        <button>Play Again</button>
+    </form></h1>
     </body>
     </html>`);
 });
 
-//app.listen(4004, () => console.log(`listening on on port ${PORT}`));
+app.get('/bye/flatEarther', flatEarthers.byeFlatEarther);
+
+
+
 
 app.listen(PORT, function(err){
     if (err) console.log(err);

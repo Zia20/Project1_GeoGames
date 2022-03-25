@@ -10,6 +10,8 @@ Problems:
     1- Ran into a lot of problems while using the async and wait method. Couldn't figure out how to use the async & wait in time to create this project. 
     2- Difficult to change 'age' input to integer
     3- Difficulty with get vs post method
+    4- Image - Didn't have enough time to learn to put jpg as a background
+    4- Timer script; couldn't make it global to insert it in four places
 
 
 Solution: Start early, next time I won't wait to start the project. Dive in and see what happens.
